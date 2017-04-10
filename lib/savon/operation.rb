@@ -51,6 +51,7 @@ module Savon
       builder = build(locals, &block)
 
       response = Savon.notify_observers(@name, builder, @globals, @locals)
+      puts('NOTIFY OBSERVERS:', response.inspect)
       response ||= call_with_logging build_request(builder)
 
       raise_expected_httpi_response! unless response.kind_of?(HTTPI::Response)
@@ -67,8 +68,10 @@ module Savon
 
     def create_response(response)
       if multipart_supported?
+        puts('MULTI PART')
         Multipart::Response.new(response, @globals, @locals)
       else
+        puts('SINGLE RESPONSE')
         Response.new(response, @globals, @locals)
       end
     end
