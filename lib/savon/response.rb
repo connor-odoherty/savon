@@ -79,8 +79,9 @@ module Savon
     def build_soap_and_http_errors!
       puts('BUILD SOAP AND HTTP ERRORS')
       @soap_fault = SOAPFault.new(@http, nori, xml) if soap_fault?
-      puts('PASSED SOAP FAULT')
+      puts('PASSED SOAP FAULT', @soap_fault.inspect)
       @http_error = HTTPError.new(@http) if http_error?
+      puts('PASSED HTTP ERROR', @http_error.inspect)
     end
 
     def raise_soap_and_http_errors!
