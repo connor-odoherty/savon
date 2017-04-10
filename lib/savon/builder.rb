@@ -28,7 +28,9 @@ module Savon
       @signature = @locals[:wsse_signature] || @globals[:wsse_signature]
 
       @types = convert_type_definitions_to_hash
+      puts('HASH TYPES:', @types.inspect)
       @used_namespaces = convert_type_namespaces_to_hash
+      puts('HASH namespaces:', @used_namespaces.inspect)
     end
 
     def pretty

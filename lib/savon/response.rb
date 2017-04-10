@@ -7,8 +7,11 @@ module Savon
 
     def initialize(http, globals, locals)
       @http    = http
+      puts('HTTP ELEMENT:', @http.inspect)
       @globals = globals
+      puts('GLOBAL ELEMENT:', @globals.inspect)
       @locals  = locals
+      puts('LOCAL ELEMENTS:', @locals.inspect)
 
       build_soap_and_http_errors!
       raise_soap_and_http_errors! if @globals[:raise_errors]
@@ -54,6 +57,7 @@ module Savon
 
     def xml
       @http.body
+      puts('HTTP BODY:', @http.body.inspect)
     end
 
     alias_method :to_xml, :xml

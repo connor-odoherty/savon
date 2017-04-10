@@ -36,8 +36,11 @@ module Savon
 
     def initialize(name, wsdl, globals)
       @name = name
+      puts('INIT NAME:', name.inspect)
       @wsdl = wsdl
+      puts('INIT WSDL', wsdl.inspect)
       @globals = globals
+      puts('INIT GLOBALS', globals.inspect)
 
       @logger = RequestLogger.new(globals)
     end
@@ -113,6 +116,7 @@ module Savon
 
       request.url = endpoint
       request.body = builder.to_s
+      puts('BUILDER BODY:', request.body)
 
       # TODO: could HTTPI do this automatically in case the header
       #       was not specified manually? [dh, 2013-01-04]
