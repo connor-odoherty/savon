@@ -59,7 +59,7 @@ module Savon
 
       raise_expected_httpi_response! unless response.kind_of?(HTTPI::Response)
 
-      puts('RESPONSE BEFORE CREATION:', response.insepct)
+      puts('RESPONSE BEFORE CREATION:', response.inspect)
       c_response = create_response(response)
       puts('CREATED RESPONSE:', c_response.inspect)
       return c_response
