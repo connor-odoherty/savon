@@ -33,7 +33,11 @@ module Savon
     end
 
     def call(operation_name, locals = {}, &block)
-      operation(operation_name).call(locals, &block)
+      puts('OPERATION NAME:', operation_name)
+      puts('LOCALS:', locals)
+      response = operation(operation_name).call(locals, &block)
+      puts('THE RESPONSE:', response)
+      return response
     end
 
     def service_name
