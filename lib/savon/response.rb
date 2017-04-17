@@ -60,8 +60,9 @@ module Savon
     end
 
     def xml
-      @http.body
       puts('HTTP BODY:', @http.body.inspect)
+      @http.body
+      
     end
 
     alias_method :to_xml, :xml
@@ -89,7 +90,6 @@ module Savon
       @soap_fault = SOAPFault.new(@http, nori, xml) if soap_fault?
       puts('PASSED SOAP FAULT', @soap_fault.inspect)
       @http_error = HTTPError.new(@http) if http_error?
-      puts('PASSED HTTP ERROR', @http_error.inspect)
     end
 
     def raise_soap_and_http_errors!
@@ -107,6 +107,7 @@ module Savon
 
     def nori
       return @nori if @nori
+      puts('MADE IT PAST NORI')
 
       nori_options = {
         :delete_namespace_attributes => @globals[:delete_namespace_attributes],
