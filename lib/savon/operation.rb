@@ -54,14 +54,15 @@ module Savon
       builder = build(locals, &block)
 
       response = Savon.notify_observers(@name, builder, @globals, @locals)
-      puts('NOTIFY OBSERVERS:', response.inspect)
       response ||= call_with_logging build_request(builder)
       puts('NOTIFY OBSERVERS:', response.inspect)
 
       raise_expected_httpi_response! unless response.kind_of?(HTTPI::Response)
 
-      create_response(response)
-      puts('OUT OF RESPONSE')
+      puts('RESPONSE BEFORE CREATION:', response.insepct)
+      c_response = create_response(response)
+      puts('CREATED RESPONSE:', c_response.inspect)
+      return c_response
     end
 
     def request(locals = {}, &block)

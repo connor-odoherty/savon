@@ -52,6 +52,10 @@ module Savon
     end
 
     def hash
+      puts('CALLED HASH')
+      puts('@HASH:', @hash.inspect)
+      puts('XML:', xml)
+      puts('NORI PARSE:', nori.parse(xml))
       @hash ||= nori.parse(xml)
     end
 
